@@ -1,0 +1,123 @@
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 62.5%;
+
+  @media (max-width: 800px) {
+    font-size: 56.25%;
+  }
+}
+
+body {
+  box-sizing: border-box;
+  font-family: 'Dancing Script', cursive;
+  font-size: 4.2rem;
+  overflow: hidden;
+}
+
+.background {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 0;
+  filter: blur(4px);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url('https://steamcdn-a.akamaihd.net/steam/apps/837470/ss_5178f94152d2e400a5d87d8d628c4101b5f9cbb7.1920x1080.jpg?t=1569616260');
+}
+
+.notebook {
+  background-color: #FFFAE7;
+  margin: 20vh auto 0;
+  max-width: 120rem;
+  z-index: 1;
+  height: 80vh;
+  position: relative;
+  border-top-right-radius: 4rem;
+
+  &__heading {
+    padding-left: 14rem;
+    padding-right: 2rem;
+    height: 14rem;
+    position: absolute;
+    display: flex;
+    align-items: flex-end;
+  }
+
+  &__ruler {
+    top: 16rem;
+    padding-right: 2rem;
+    padding-left: 14rem;
+    height: 100%;
+    position: relative;
+    background: repeating-linear-gradient(
+      #A4C0EB 0px,
+      #A4C0EB 3px,
+      transparent 4px,
+      transparent 6rem,
+    );
+    z-index: 2;
+  }
+
+  &__left-margin {
+    position: absolute;
+    height: 100%;
+    width: 3px;
+    background-color: #EC9D90;
+    left: 12rem;
+    top: 0;
+    z-index: 3;
+  }
+
+  &__top-margin {
+    position: absolute;
+    height: 3px;
+    width: 100%;
+    background-color: #A4C0EB;
+    top: 14rem;
+    left: 0;
+    z-index: 2;
+  }
+}
+
+.todo {
+  position: relative;
+  height: 6rem;
+
+  input {
+    position: absolute;
+    height: 100%;
+    width: 6rem;
+    position: absolute;
+    left: -8rem;
+    opacity: 0;
+  }
+
+  input:checked + textarea {
+    text-decoration: line-through;
+  }
+
+  textarea {
+    width: 100%;
+    font-family: 'Dancing Script', cursive;
+    font-size: 4.2rem;
+    line-height: 5.2rem;
+    background-color: transparent;
+    border: none;
+    padding: .8rem .2rem 0;
+    resize: none;
+
+    &:focus {
+      outline: none;
+    }
+  }
+}
