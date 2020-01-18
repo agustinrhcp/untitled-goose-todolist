@@ -9,7 +9,7 @@
 html {
   font-size: 62.5%;
 
-  @media (max-width: 800px) {
+  @media (max-width: 1600px) {
     font-size: 56.25%;
   }
 }
@@ -44,6 +44,12 @@ body {
   position: relative;
   border-top-right-radius: 4rem;
 
+  @media (max-width: 1600px) {
+    margin: 10vh auto 0;
+    max-width: 100rem;
+    height: 90vh;
+  }
+
   &__heading {
     padding-left: 14rem;
     padding-right: 2rem;
@@ -66,6 +72,8 @@ body {
       transparent 6rem,
     );
     z-index: 2;
+    list-style-type: none;
+    padding-top: 1.8rem;
   }
 
   &__left-margin {
@@ -91,7 +99,26 @@ body {
 
 .todo {
   position: relative;
-  height: 6rem;
+  margin-left: 3rem;
+
+  &:first-child {
+    // padding-top: 1.8rem;
+  }
+
+  &:before {
+    content: "\2022";
+    position: absolute;
+    font-size: 6rem;
+    left: -2.6rem;
+    top: -1.8rem;
+  }
+
+  &:hover {
+    input {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
 
   input {
     position: absolute;
@@ -100,6 +127,7 @@ body {
     position: absolute;
     left: -8rem;
     opacity: 0;
+    visibility: hidden;
   }
 
   input:checked + textarea {
@@ -107,13 +135,14 @@ body {
   }
 
   textarea {
+    display: block;
     width: 100%;
     font-family: 'Dancing Script', cursive;
     font-size: 4.2rem;
-    line-height: 5.2rem;
+    line-height: 6rem;
     background-color: transparent;
     border: none;
-    padding: .8rem .2rem 0;
+    padding: 0 .2rem;
     resize: none;
 
     &:focus {

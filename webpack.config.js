@@ -3,7 +3,12 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const AutoprefixerPlugin = require('autoprefixer');
 
-const HtmlWebpackPluginConfig = new HtmlWebpackPlugin({ template: 'src/index.html' });
+const HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
+  template: 'src/index.html',
+  filename: 'index.html',
+  inject: 'body',
+  publicPath: '/',
+});
 
 const ExtractCssPluginConfig = new ExtractTextPlugin({
   filename: 'styles.[md5:contenthash:hex:20].css',
@@ -12,11 +17,24 @@ const ExtractCssPluginConfig = new ExtractTextPlugin({
 });
 
 module.exports = {
+  mode: 'development',
   entry: {
-    bundle: './src/styles/main.scss',
+    bundle: './src/index.js',
   },
   module: {
     rules: [
+      {
+        test: /\.js$/,
+        use: 'babel-loader',
+        exclude: [/node_modules/],
+      },
+      {
+        test: /\.elm$/,
+        exclude: [/elm-stuff/],
+        use: {
+          loader: 'elm-webpack-loader',
+        }
+      },
       {
         test: /\.scss$/,
         use: ExtractCssPluginConfig.extract({
